@@ -1,0 +1,106 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Calculator</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #calculator {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 5px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      border-radius: 3px;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="calculator">
+    <h1>Simple Calculator</h1>
+    <input type="text" id="display" readonly>
+    <br>
+    <button onclick="appendNumber('7')">7</button>
+    <button onclick="appendNumber('8')">8</button>
+    <button onclick="appendNumber('9')">9</button>
+    <button onclick="appendOperator('/')">/</button>
+    <br>
+    <button onclick="appendNumber('4')">4</button>
+    <button onclick="appendNumber('5')">5</button>
+    <button onclick="appendNumber('6')">6</button>
+    <button onclick="appendOperator('*')">*</button>
+    <br>
+    <button onclick="appendNumber('1')">1</button>
+    <button onclick="appendNumber('2')">2</button>
+    <button onclick="appendNumber('3')">3</button>
+    <button onclick="appendOperator('-')">-</button>
+    <br>
+    <button onclick="appendNumber('0')">0</button>
+    <button onclick="appendNumber('.')">.</button>
+    <button onclick="calculate()">=</button>
+    <button onclick="appendOperator('+')">+</button>
+    <br>
+    <button onclick="clearDisplay()">C</button>
+  </div>
+
+  <script>
+    let display = document.getElementById('display');
+    let currentInput = '';
+
+    function appendNumber(num) {
+      currentInput += num;
+      display.value = currentInput;
+    }
+
+    function appendOperator(operator) {
+      currentInput += operator;
+      display.value = currentInput;
+    }
+
+    function calculate() {
+      try {
+        // Check if the input is "1+1"
+        if (currentInput === "1+1") {
+          display.value = "I MISS U"; // Show "I MISS U" when 1+1 is entered
+        } else {
+          display.value = eval(currentInput); 
+          currentInput = display.value; 
+        }
+      } catch (error) {
+        display.value = "Error";
+      }
+    }
+
+    function clearDisplay() {
+      currentInput = '';
+      display.value = '';
+    }
+  </script>
+</body>
+</html>
